@@ -88,9 +88,14 @@ class Handler:
     def on_settings_clicked(self, button):
         global storagePath
         new = settingentry.get_text().strip()
-        if(len(new) > 0 and os.path.exists(new) and os.path.isdir(new)):
-            config.setStoragePath(new)
-            storagePath = new
+        try:
+            if(len(new) > 0 and os.path.exists(new) and os.path.isdir(new)):
+                config.setStoragePath(new)
+                storagePath = new
+                show_hint(0, u"设置Markdown存储路径 ... 成功")
+            else:
+                show_hint(0, u"设置Markdown存储路径 ... 失败")
+        except:
             show_hint(0, u"设置Markdown存储路径 ... 失败")
 
     def on_window_destroy(self, *args):
