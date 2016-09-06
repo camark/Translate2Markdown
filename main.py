@@ -24,7 +24,7 @@ async def request_translate():
         tasks = [
             loop.run_in_executor(pool, translate.translate, input),
         ]
-        completed, pending = await asyncio.wait(tasks, timeout=1000)
+        completed, pending = await asyncio.wait(tasks, timeout=2500)
         results = [t.result() for t in completed]
 
         if(results is None or len(results)==0):
