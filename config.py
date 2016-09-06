@@ -7,6 +7,7 @@ import os
 configfile = os.environ["HOME"] + "/.translate2markdown/config.conf"
 defaultstoragepath = os.environ["HOME"] + "/Translate2markdown"
 
+
 if(not os.path.exists(configfile)):
     os.makedirs(os.path.dirname(configfile),exist_ok=True)
     os.makedirs(defaultstoragepath, exist_ok=True)
@@ -34,9 +35,8 @@ def getStoragePath():
 
 def setStoragePath(path):
     parser.set("global", "storagePath", path)
-    storagePath = path
     with open(configfile,"w") as f:
         parser.write(f)
         f.close()
 
-storagePath = getStoragePath()
+

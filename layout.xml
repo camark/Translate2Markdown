@@ -63,8 +63,6 @@
         <property name="can_focus">False</property>
         <property name="margin_left">10</property>
         <property name="margin_right">10</property>
-        <property name="margin_top">10</property>
-        <property name="margin_bottom">10</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkToolbar" id="toolbar">
@@ -74,7 +72,7 @@
               <object class="GtkToolButton" id="settingsbtn">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Settings</property>
+                <property name="label" translatable="yes">存储设置</property>
                 <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_settingsbtn_clicked" swapped="no"/>
               </object>
@@ -88,7 +86,7 @@
                 <property name="related_action">toggleaction</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Auto Save</property>
+                <property name="label" translatable="yes">自动存储</property>
                 <property name="use_underline">True</property>
               </object>
               <packing>
@@ -141,7 +139,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="settings">
-                    <property name="label" translatable="yes">Apply</property>
+                    <property name="label" translatable="yes">应用</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -161,23 +159,29 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="displaylabel">
+              <object class="GtkScrolledWindow" id="scrolledwindow1">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">True</property>
                 <property name="margin_top">10</property>
                 <property name="margin_bottom">10</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="wrap">True</property>
-                <property name="selectable">True</property>
-                <property name="ellipsize">end</property>
-                <property name="xalign">0.019999999552965164</property>
-                <property name="yalign">0.019999999552965164</property>
+                <property name="hscrollbar_policy">never</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkTextView" id="textview">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="editable">False</property>
+                    <property name="wrap_mode">word</property>
+                    <property name="top_margin">1</property>
+                    <property name="indent">5</property>
+                    <property name="cursor_visible">False</property>
+                    <property name="accepts_tab">False</property>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="padding">1</property>
                 <property name="position">1</property>
               </packing>
             </child>
@@ -207,7 +211,7 @@
             </child>
             <child>
               <object class="GtkButton" id="transbtn">
-                <property name="label" translatable="yes">Translate</property>
+                <property name="label" translatable="yes">翻译</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

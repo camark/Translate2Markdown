@@ -15,6 +15,7 @@ def getencodeurl(ew):
 def parse(data):
     result = ""
     hasps = False
+    hassent = False
     try:
         with parseString(data) as d:
             if(d.nodeType != Node.DOCUMENT_NODE):
@@ -44,6 +45,25 @@ def parse(data):
                     result += "%s  " % value
                 elif(name == "acceptation"):
                     result += "%s" % value
+                elif(name=="sent"):
+                    if(not hassent):
+                        hassent = True
+                        result += "\n例句\n"
+
+                    for i in item.childNodes:
+                        n = i.nodeName
+                        if(n == "#text"):
+                            continue
+                        v = i.childNodes[0].nodeValue
+                        if(v is None):
+                            continue
+                        
+                        if(n == "orig"):
+                            result += v.strip('\n')
+                        elif(n == "trans"):
+                            result += v + "\n"
+                        
+
             if(hasps):
                 return result + "```"
             else:
@@ -55,9 +75,12 @@ def parse(data):
 def translate(ew):
     url = getencodeurl(ew)
     result = None
-    with urllib.request.urlopen(url) as f:
-        result = parse(f.read().decode('utf-8'))
-        f.close()
+    try:
+        with urllib.request.urlopen(url) as f:
+            result = parse(f.read().decode('utf-8'))
+            f.close()
+    except Exception as e:
+        pass
     if(result is None):
         return ("# %s" % ew, False)
     else:
