@@ -20,7 +20,9 @@
 
 ## The application pages
 * Main Page
+
 ![Page](./page.png)
 
 * Markdown File
+
 ![Page1](./page1.png)
